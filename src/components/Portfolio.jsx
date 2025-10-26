@@ -23,7 +23,7 @@ const Portfolio = () => {
             title: 'Contemporary Office',
             category: 'Motorized Blinds',
             image: 'https://images.unsplash.com/photo-1497366216548-37526070297c?w=1600&h=900&fit=crop',
-            span: 'col-span-2',
+            span: 'md:col-span-2',
         },
         {
             id: 4,
@@ -42,21 +42,21 @@ const Portfolio = () => {
             title: 'Luxury Housing Villa',
             category: 'Full Home Installation',
             image: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1600&h=900&fit=crop',
-            span: 'col-span-2',
+            span: 'md:col-span-2',
         },
         {
             id: 7,
             title: 'Master Bedroom',
             category: 'Premium Curtains',
             image: 'https://images.unsplash.com/photo-1616594039964-ae9021a400a0?w=1600&h=900&fit=crop',
-            span: 'col-span-2',
+            span: 'md:col-span-2',
         },
         {
             id: 8,
             title: 'Penthouse Suite',
             category: 'Designer Blinds',
             image: 'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=1600&h=900&fit=crop',
-            span: 'col-span-2',
+            span: 'md:col-span-2',
         },
     ];
 
@@ -86,7 +86,6 @@ const Portfolio = () => {
     return (
         <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 py-12 px-4">
             <div className="max-w-[1400px] mx-auto">
-                {/* Header */}
                 <motion.div
                     initial={{ opacity: 0, y: -20 }}
                     animate={{ opacity: 1, y: 0 }}
@@ -101,7 +100,6 @@ const Portfolio = () => {
                     </p>
                 </motion.div>
 
-                {/* Gallery Grid - Masonry Style */}
                 <motion.div
                     variants={containerVariants}
                     initial="hidden"
@@ -112,12 +110,10 @@ const Portfolio = () => {
                         <motion.div
                             key={project.id}
                             variants={itemVariants}
-                            className={`relative group rounded-xl overflow-hidden shadow-2xl ${project.span || 'col-span-1'
-                                } ${project.id === 1 || project.id === 4 ? 'row-span-1' : ''}`}
+                            className={`relative group rounded-xl overflow-hidden shadow-2xl ${project.span ? `col-span-1 ${project.span}` : 'col-span-1'}`}
                             onMouseEnter={() => setHoveredId(project.id)}
                             onMouseLeave={() => setHoveredId(null)}
                         >
-                            {/* Image Container */}
                             <div className="relative h-64 md:h-72 overflow-hidden">
                                 <img
                                     src={project.image}
@@ -125,13 +121,10 @@ const Portfolio = () => {
                                     className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 brightness-95"
                                 />
 
-                                {/* Dark Overlay on Hover */}
                                 <div
                                     className={`absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-black/20 transition-opacity duration-300 ${hoveredId === project.id ? 'opacity-100' : 'opacity-0'
                                         }`}
                                 />
-
-                                {/* Center Button - Show on Hover */}
                                 <div
                                     className={`absolute inset-0 flex items-center justify-center transition-all duration-300 ${hoveredId === project.id
                                         ? 'opacity-100 translate-y-0'
@@ -150,7 +143,6 @@ const Portfolio = () => {
                                 </div>
                             </div>
 
-                            {/* Bottom Info Bar */}
                             <div className="bg-white p-4">
                                 <h3 className="text-lg font-bold text-gray-900 mb-1">
                                     {project.title}
@@ -160,7 +152,6 @@ const Portfolio = () => {
                                 </p>
                             </div>
 
-                            {/* Decorative Top Border */}
                             <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-cyan-400 via-cyan-600 to-cyan-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                         </motion.div>
                     ))}
